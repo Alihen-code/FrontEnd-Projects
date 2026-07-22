@@ -1,0 +1,133 @@
+ /* Resetting default margin and padding */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* Global styles */
+      body {
+        font-family: Arial, sans-serif;
+        /* === NEW: Center the entire page content and limit max width === */
+        max-width: 1200px;
+        margin: 0 auto; /* This centers the whole body horizontally */
+        padding: 0 20px; /* Adds a little breathing room on the sides */
+        background-color: #ffffff;
+      }
+
+      /* Header styles */
+      #header {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 10px; /* Small space from top of browser */
+        border-radius: 8px; /* Optional: rounds the corners */
+      }
+
+      #nav-bar ul {
+        list-style-type: none;
+        display: flex;
+      }
+
+      #nav-bar ul li {
+        margin-right: 10px;
+      }
+
+      .nav-link {
+        color: #fff;
+        text-decoration: none;
+        padding: 8px 15px;
+        transition: background 0.3s;
+      }
+      
+      .nav-link:hover {
+        background: #555;
+        border-radius: 5px;
+      }
+
+      /* Feature section styles */
+      #features {
+        padding: 40px 10px;
+        background-color: #f4f4f4;
+        margin-top: 20px;
+        border-radius: 8px;
+        /* === NEW: Center the text inside the section (like the "Features" heading) === */
+        text-align: center;
+      }
+
+      .feature {
+        display: flex;
+        flex-wrap: wrap;
+        /* === EDITED: Changed from 'space-between' to 'center' === */
+        justify-content: center;
+        /* === NEW: Added a gap so cards have breathing room when centered === */
+        gap: 30px;
+        margin-bottom: 10px;
+      }
+
+      /* --- Your Card Flip Styles (Kept exactly as they were) --- */
+      .card {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        perspective: 1000px;
+        box-shadow: 0 0 0 5px #ffffff80;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .card img {
+        width: 80px;
+        /* fill: #333;  (fill is for SVG, not img) */
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+      }
+
+      .card__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+        background-color: #f2f2f2;
+        transform: rotateX(-90deg);
+        transform-origin: bottom;
+        transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .card:hover .card__content {
+        transform: rotateX(0deg);
+      }
+
+      .card__title {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+        font-weight: 700;
+      }
+
+      .card:hover img {
+        scale: 0; /* Hides the image on hover */
+      }
+
+      .card__description {
+        margin: 10px 0 0;
+        font-size: 14px;
+        color: #777;
+        line-height: 1.4;
+      }
