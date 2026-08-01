@@ -1,0 +1,275 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xbox 360 Registration Card</title>
+  <style>
+    /* ----- Reset & Base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0b0b15;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 1.5rem;
+    }
+
+    /* ----- The animated gradient border (same technique) ----- */
+    .card-wrapper {
+      padding: 4px;               /* border thickness */
+      border-radius: 28px;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 0 50px rgba(120, 185, 67, 0.15);
+    }
+
+    /* The sweeping gradient layer — constantly moving */
+    .card-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        #78b943,   /* Xbox green */
+        #107c10,   /* dark green */
+        #45b7d1,   /* cyan */
+        #f9ca24,   /* yellow */
+        #78b943    /* back to green */
+      );
+      background-size: 300% 100%;
+      animation: sweep 4s linear infinite;
+    }
+
+    /* ----- The actual card content (sits on top) ----- */
+    .card {
+      position: relative;
+      z-index: 1;               /* above the gradient */
+      background: #12121e;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      color: #e8e8e8;
+      backdrop-filter: blur(2px);
+    }
+
+    /* ----- Header ----- */
+    .card-header {
+      text-align: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .card-header .icon {
+      font-size: 2.8rem;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-header h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #78b943, #45b7d1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.5px;
+    }
+
+    .card-header p {
+      color: #8888aa;
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+
+    /* ----- Form Elements ----- */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #bbbbdd;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.3px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      background: #1c1c2e;
+      border: 2px solid #2a2a42;
+      border-radius: 12px;
+      color: #f0f0f0;
+      font-size: 0.95rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #78b943;
+      box-shadow: 0 0 0 3px rgba(120, 185, 67, 0.2);
+    }
+
+    .form-group input::placeholder {
+      color: #666688;
+      font-weight: 300;
+    }
+
+    .form-group select option {
+      background: #1c1c2e;
+    }
+
+    /* ----- Checkboxes (Accessories) ----- */
+    fieldset {
+      border: none;
+      margin: 1.2rem 0 1.5rem 0;
+      padding: 0;
+    }
+
+    fieldset legend {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #bbbbdd;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #ccccdd;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .checkbox-group label:hover {
+      color: #78b943;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 1.1rem;
+      height: 1.1rem;
+      accent-color: #78b943;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ----- Submit Button (with its own subtle moving gradient) ----- */
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #78b943, #107c10);
+      border: none;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 15px rgba(120, 185, 67, 0.25);
+      text-transform: uppercase;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 25px rgba(120, 185, 67, 0.4);
+    }
+
+    .submit-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* ----- Keyframes for the sweeping border ----- */
+    @keyframes sweep {
+      0%   { background-position: 0% 0%; }
+      100% { background-position: 300% 0%; }
+    }
+
+    /* ----- Responsive tweaks ----- */
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .card-header h2 {
+        font-size: 1.5rem;
+      }
+      .checkbox-group {
+        gap: 0.5rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card-wrapper">
+    <div class="card">
+
+      <!-- Header -->
+      <div class="card-header">
+        <span class="icon">🎮</span>
+        <h2>Xbox 360</h2>
+        <p>Register your console for the ultimate retro experience</p>
+      </div>
+
+      <!-- Form -->
+      <form>
+        <!-- Gamertag -->
+        <div class="form-group">
+          <label for="gamertag">Gamertag</label>
+          <input type="text" id="gamertag" placeholder="e.g., EliteSniper360" />
+        </div>
+
+        <!-- Console Model -->
+        <div class="form-group">
+          <label for="model">Console Model</label>
+          <select id="model">
+            <option>Xbox 360 Arcade</option>
+            <option>Xbox 360 Pro</option>
+            <option>Xbox 360 Elite</option>
+            <option>Xbox 360 Slim</option>
+            <option>Xbox 360 E</option>
+          </select>
+        </div>
+
+        <!-- Accessories (checkboxes) -->
+        <fieldset>
+          <legend>🎒 Select your accessories</legend>
+          <div class="checkbox-group">
+            <label><input type="checkbox" /> Wireless Controller</label>
+            <label><input type="checkbox" /> HDMI Cable</label>
+            <label><input type="checkbox" /> Kinect Sensor</label>
+            <label><input type="checkbox" /> Play &amp; Charge Kit</label>
+          </div>
+        </fieldset>
+
+        <!-- Submit -->
+        <button type="submit" class="submit-btn">Register Console</button>
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>
