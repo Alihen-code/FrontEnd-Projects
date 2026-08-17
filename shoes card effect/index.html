@@ -1,0 +1,129 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sneakers & Boots</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <div class="search">
+                    <input type="text" name="search" id="search" placeholder="Search" />
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ===== BANNER ===== -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Step Into Style</h1>
+            <p>Premium sneakers & boots for every occasion</p>
+            <a href="#cards-section" class="btn-shop">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- ===== 3D CARD CAROUSEL ===== -->
+    <section class="cards-section" id="cards-section">
+        <h2 class="section-title">Our Collection</h2>
+
+        <div class="carousel-wrapper">
+            <!-- Carousel container with 3D perspective -->
+            <div class="carousel-container" id="carousel">
+                <!-- Card 1 — Sneaker -->
+                <div class="card" data-index="0">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">👟</div>
+                            <h3>Nike Air Max</h3>
+                            <p class="card-sub">Premium Sneaker</p>
+                            <span class="price">$149.99</span>
+                        </div>
+                        <div class="card-back">
+                            <h4>Nike Air Max</h4>
+                            <p>Ultimate comfort with responsive cushioning and iconic style.</p>
+                            <ul>
+                                <li>✔ Breathable mesh</li>
+                                <li>✔ Air-Sole unit</li>
+                                <li>✔ Durable rubber outsole</li>
+                            </ul>
+                            <a href="#" class="btn-detail">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 — Boot -->
+                <div class="card" data-index="1">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">🥾</div>
+                            <h3>Timberland</h3>
+                            <p class="card-sub">Classic Boot</p>
+                            <span class="price">$189.99</span>
+                        </div>
+                        <div class="card-back">
+                            <h4>Timberland Classic</h4>
+                            <p>Rugged, waterproof boots built for adventure and everyday wear.</p>
+                            <ul>
+                                <li>✔ Premium leather</li>
+                                <li>✔ Waterproof construction</li>
+                                <li>✔ Anti-fatigue comfort</li>
+                            </ul>
+                            <a href="#" class="btn-detail">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 — Sneaker -->
+                <div class="card" data-index="2">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-icon">👟</div>
+                            <h3>Adidas Ultraboost</h3>
+                            <p class="card-sub">Performance Sneaker</p>
+                            <span class="price">$179.99</span>
+                        </div>
+                        <div class="card-back">
+                            <h4>Adidas Ultraboost</h4>
+                            <p>Lightweight energy-returning sneakers for runners and trendsetters.</p>
+                            <ul>
+                                <li>✔ Boost™ cushioning</li>
+                                <li>✔ Primeknit upper</li>
+                                <li>✔ Stretchweb outsole</li>
+                            </ul>
+                            <a href="#" class="btn-detail">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation controls -->
+            <div class="carousel-controls">
+                <button class="ctrl-btn prev-btn" id="prevBtn">&#10094;</button>
+                <div class="indicators" id="indicators">
+                    <span class="dot active" data-index="0"></span>
+                    <span class="dot" data-index="1"></span>
+                    <span class="dot" data-index="2"></span>
+                </div>
+                <button class="ctrl-btn next-btn" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p>&copy; 2026 Sneaker &amp; Boot Co. — All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
