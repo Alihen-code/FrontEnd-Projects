@@ -1,0 +1,387 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Ali · The Greatest</title>
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fafafa;
+            color: #1a1a1a;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ---------- TYPOGRAPHY ---------- */
+        h1 {
+            font-size: 3.4rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin: 2.5rem 0 1.2rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.3rem;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 0.2rem;
+            font-weight: 300;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem 0 2.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1 1 280px;
+        }
+
+        .hero-text .nickname {
+            display: block;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #888;
+            margin-top: 0.3rem;
+        }
+
+        .hero-text .years {
+            font-size: 0.9rem;
+            color: #999;
+            margin-top: 0.1rem;
+        }
+
+        .hero-image {
+            flex: 0 0 220px;
+            max-width: 100%;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+            display: block;
+            background: #eee;
+        }
+
+        /* ---------- QUOTE ---------- */
+        .quote-block {
+            background: #f0f0f0;
+            padding: 2rem 2.5rem;
+            border-radius: 6px;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.4rem;
+            text-align: center;
+            color: #222;
+            border-left: 6px solid #aaa;
+        }
+
+        .quote-block cite {
+            display: block;
+            font-size: 0.9rem;
+            font-style: normal;
+            color: #666;
+            margin-top: 0.6rem;
+        }
+
+        /* ---------- BIO + IMAGE (FLOAT) ---------- */
+        .bio-wrap {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .bio-wrap .bio-text {
+            flex: 2 1 280px;
+        }
+
+        .bio-wrap .bio-image {
+            flex: 0 0 200px;
+            max-width: 100%;
+        }
+
+        .bio-wrap .bio-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            display: block;
+            background: #eee;
+        }
+
+        /* ---------- TIMELINE ---------- */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .timeline li {
+            display: flex;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            align-items: baseline;
+        }
+
+        .timeline .year {
+            font-weight: 700;
+            min-width: 80px;
+            color: #2a2a2a;
+        }
+
+        .timeline .event {
+            color: #333;
+        }
+
+        .timeline .event strong {
+            font-weight: 600;
+        }
+
+        /* ---------- LEGACY + IMAGE (FLEX) ---------- */
+        .legacy-wrap {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 1rem 0 0.5rem;
+        }
+
+        .legacy-wrap .legacy-text {
+            flex: 2 1 280px;
+        }
+
+        .legacy-wrap .legacy-image {
+            flex: 0 0 220px;
+            max-width: 100%;
+        }
+
+        .legacy-wrap .legacy-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            display: block;
+            background: #eee;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            margin-top: 3.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 650px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            h1 {
+                font-size: 2.4rem;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 1.2rem;
+            }
+            .hero-image {
+                flex: 0 0 auto;
+                width: 180px;
+            }
+            .bio-wrap {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .bio-wrap .bio-image {
+                flex: 0 0 auto;
+                width: 180px;
+            }
+            .legacy-wrap {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .legacy-wrap .legacy-image {
+                flex: 0 0 auto;
+                width: 180px;
+            }
+            .quote-block {
+                font-size: 1.1rem;
+                padding: 1.2rem;
+            }
+            .timeline li {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================ -->
+    <!-- HERO: title + portrait -->
+    <!-- ============================================================ -->
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Muhammad Ali</h1>
+            <span class="nickname">The Greatest · The Louisville Lip</span>
+            <span class="years">1942 – 2016</span>
+            <p class="subhead" style="margin-top: 0.8rem;">
+                Olympic gold · 3× World Heavyweight Champion · Activist &amp; Icon
+            </p>
+        </div>
+        <div class="hero-image">
+            <!-- Portrait from Wikimedia Commons -->
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Muhammad_Ali_NYWTS.jpg/640px-Muhammad_Ali_NYWTS.jpg"
+                alt="Muhammad Ali portrait"
+                loading="lazy"
+            />
+        </div>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- QUOTE -->
+    <!-- ============================================================ -->
+    <figure class="quote-block">
+        “Float like a butterfly, sting like a bee. Your hands can't hit what your eyes can't see.”
+        <cite>— Muhammad Ali</cite>
+    </figure>
+
+    <!-- ============================================================ -->
+    <!-- BIO + second image (training) -->
+    <!-- ============================================================ -->
+    <section>
+        <h2>Who He Was</h2>
+        <div class="bio-wrap">
+            <div class="bio-text">
+                <p>
+                    Cassius Marcellus Clay Jr. (later Muhammad Ali) was not only one of the greatest
+                    boxers in history, but also a cultural and political force. His speed, charisma,
+                    and unorthodox style revolutionised the ring. Outside it, his refusal to be drafted
+                    during the Vietnam War and his conversion to Islam made him a symbol of resistance
+                    and conviction.
+                </p>
+                <p style="margin-top: 0.6rem;">
+                    Ali’s influence transcends boxing. He was a poet, a philanthropist, and a global
+                    ambassador for peace. His Parkinson’s diagnosis in 1984 did not silence him; he
+                    remained a beloved public figure until his death in 2016.
+                </p>
+            </div>
+            <div class="bio-image">
+                <!-- Training / action shot -->
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Muhammad_Ali_%281966%29.jpg/640px-Muhammad_Ali_%281966%29.jpg"
+                    alt="Muhammad Ali training"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- TIMELINE -->
+    <!-- ============================================================ -->
+    <section>
+        <h2>Key Fights &amp; Milestones</h2>
+        <ul class="timeline">
+            <li>
+                <span class="year">1960</span>
+                <span class="event"><strong>Olympic Gold</strong> – Light heavyweight champion in Rome.</span>
+            </li>
+            <li>
+                <span class="year">1964</span>
+                <span class="event"><strong>First Heavyweight Title</strong> – Defeats Sonny Liston (age 22).</span>
+            </li>
+            <li>
+                <span class="year">1967</span>
+                <span class="event"><strong>Stripped of Title</strong> – Refuses induction into U.S. Army.</span>
+            </li>
+            <li>
+                <span class="year">1971</span>
+                <span class="event"><strong>Fight of the Century</strong> – Loses to Joe Frazier (first loss).</span>
+            </li>
+            <li>
+                <span class="year">1974</span>
+                <span class="event"><strong>Rumble in the Jungle</strong> – Knocks out George Foreman in Zaire.</span>
+            </li>
+            <li>
+                <span class="year">1975</span>
+                <span class="event"><strong>Thrilla in Manila</strong> – Defeats Joe Frazier in brutal bout.</span>
+            </li>
+            <li>
+                <span class="year">1981</span>
+                <span class="event"><strong>Retirement</strong> – Finishes career with 56 wins (37 KOs), 5 losses.</span>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- LEGACY + third image (Ali vs Liston) -->
+    <!-- ============================================================ -->
+    <section>
+        <h2>Legacy</h2>
+        <div class="legacy-wrap">
+            <div class="legacy-text">
+                <p>
+                    Ali’s legacy is etched not only in the ring but in the hearts of millions who saw
+                    him stand for what he believed in. He used his platform to speak against racism,
+                    war, and injustice. In his own words:
+                    <em>“Service to others is the rent you pay for your room here on earth.”</em>
+                </p>
+                <p style="margin-top: 0.6rem;">
+                    Today, he is remembered as <strong>“The People’s Champion”</strong> — a man who
+                    combined athletic brilliance with an unshakeable moral compass.
+                </p>
+            </div>
+            <div class="legacy-image">
+                <!-- Iconic fight moment -->
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Ali_against_Liston_May_25_1965.jpg/640px-Ali_against_Liston_May_25_1965.jpg"
+                    alt="Ali vs Liston"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================================ -->
+    <footer>
+        <p>Made with ♥ — a minimal tribute to the champ.</p>
+    </footer>
+
+</body>
+</html>
