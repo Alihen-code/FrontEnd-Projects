@@ -1,0 +1,561 @@
+/* ==========================================================================
+   Camper Cafe — design tokens
+   Forest / kraft-paper / trail-map theme
+   ========================================================================== */
+
+:root {
+  --forest: #1f2e1a;
+  --forest-soft: #2c3f26;
+  --forest-line: #3c5233;
+  --kraft: #f2e8d5;
+  --kraft-deep: #ead9b8;
+  --canvas: #e8dcc0;
+  --amber: #d4a017;
+  --amber-light: #f0c04d;
+  --amber-deep: #a97b0f;
+  --brick: #8c3b2e;
+  --brick-light: #b5533f;
+  --ink: #2b2620;
+  --ink-soft: #5a5344;
+  --line: rgba(43, 38, 32, 0.22);
+  --paper-shadow: rgba(31, 46, 26, 0.4);
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--forest);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--kraft);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(43, 38, 32, 0.07) 1px, transparent 0),
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 160, 23, 0.15), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(31, 46, 26, 0.08), transparent);
+  background-size: 22px 22px, 100% 100%, 100% 100%;
+  background-repeat: repeat, no-repeat, no-repeat;
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  padding: 56px 20px 72px;
+}
+
+a {
+  color: var(--brick);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- Card ---------- */
+
+.menu {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent 120px),
+    repeating-linear-gradient(
+      135deg,
+      rgba(43, 38, 32, 0.015) 0px,
+      rgba(43, 38, 32, 0.015) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    var(--kraft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 52px clamp(20px, 5vw, 60px) 44px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 32px 60px -32px var(--paper-shadow),
+    0 8px 20px -12px rgba(31, 46, 26, 0.3);
+}
+
+.menu::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1.5px dashed rgba(143, 105, 43, 0.35);
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  position: relative;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.badge {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--forest);
+  background: linear-gradient(180deg, var(--amber-light), var(--amber));
+  padding: 8px 26px;
+  margin: 0 0 22px;
+  clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0% 50%);
+  box-shadow: 0 4px 10px -4px rgba(169, 123, 15, 0.6);
+}
+
+.masthead h1 {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.01em;
+  color: var(--forest);
+  margin: 0;
+  text-shadow: 0 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.masthead h1::after {
+  content: "";
+  display: block;
+  width: 130px;
+  height: 12px;
+  margin: 6px auto 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='12' viewBox='0 0 130 12'%3E%3Cpath d='M2 6 Q17 0 32 6 T62 6 T92 6 T122 6' stroke='%23D4A017' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.established {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  margin: 14px 0 0;
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin: 18px auto 0;
+}
+
+/* ---------- Trail (signature element) ----------
+   A dotted contour line runs down the left edge of the menu,
+   like a trail on a topo map, connecting each menu section
+   to a numbered "trailhead" marker. The same dotted language
+   reappears as the price leaders inside each item.
+------------------------------------------------- */
+
+.trail {
+  position: relative;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 20px;
+  animation: arrive 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  animation-delay: calc(var(--stop-index, 0) * 110ms);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stop-marker {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.stop-marker::before {
+  content: "";
+  position: absolute;
+  top: 46px;
+  bottom: -40px;
+  left: 50%;
+  border-left: 2.5px dotted var(--forest-line);
+  opacity: 0.5;
+}
+
+.stop:last-child .stop-marker::before {
+  display: none;
+}
+
+.pin {
+  position: relative;
+  z-index: 1;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, var(--forest-soft), var(--forest) 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow:
+    0 0 0 4px var(--kraft),
+    0 0 0 5.5px var(--line),
+    0 3px 8px rgba(31, 46, 26, 0.35),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.stop:hover .pin {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.stop-content {
+  min-width: 0;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.section-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--forest) 0%, var(--forest) 40px, var(--line) 40px);
+  border-radius: 3px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.55rem;
+  color: var(--forest);
+  margin: 0;
+}
+
+.section-note {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ---------- Items ---------- */
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 11px 12px 11px 16px;
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--amber);
+  transform: scaleY(0);
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  background: var(--canvas);
+  transform: translateX(2px);
+  box-shadow: 0 4px 10px -6px rgba(31, 46, 26, 0.3);
+}
+
+.item:hover::before {
+  transform: scaleY(1);
+}
+
+.item .flavor {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--ink);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.leader {
+  flex: 1;
+  border-bottom: 2px dotted var(--line);
+  transform: translateY(-4px);
+  min-width: 24px;
+}
+
+.item .price {
+  position: relative;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--forest);
+  margin: 0;
+  white-space: nowrap;
+  background: var(--kraft-deep);
+  padding: 3px 10px 3px 14px;
+  border-radius: 3px;
+  border: 1px dashed rgba(143, 105, 43, 0.4);
+}
+
+.item .price::before {
+  content: "$";
+  margin-right: 1px;
+  color: var(--amber-deep);
+}
+
+.item .price::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--kraft);
+  border: 1px dashed rgba(143, 105, 43, 0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.favorite-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brick-light), var(--brick));
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-left: 8px;
+  vertical-align: middle;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px -2px rgba(140, 59, 46, 0.7);
+}
+
+/* ---------- Footer ---------- */
+
+.bottom-line {
+  border: none;
+  height: 3px;
+  margin: 48px 0 30px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--forest-line) 0,
+    var(--forest-line) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-radius: 3px;
+  opacity: 0.55;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  text-align: center;
+}
+
+.footer-block {
+  padding: 14px 12px;
+  border: 1px dashed rgba(143, 105, 43, 0.35);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.footer-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber-deep);
+  margin: 0 0 8px;
+}
+
+.footer-label::before {
+  margin-right: 6px;
+}
+
+.footer-block:first-child .footer-label::before {
+  content: "⏰";
+}
+
+.footer-block:last-child .footer-label::before {
+  content: "📍";
+}
+
+footer p {
+  margin: 3px 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+footer a {
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+footer a:hover {
+  border-color: currentColor;
+}
+
+.address {
+  font-family: var(--font-mono);
+  font-size: 0.85rem !important;
+}
+
+.fine-print {
+  text-align: center;
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-top: 26px !important;
+  color: var(--ink-soft);
+  opacity: 0.75;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 520px) {
+  body {
+    padding: 32px 12px 48px;
+  }
+
+  .menu {
+    padding: 36px 18px 32px;
+  }
+
+  .menu::before {
+    inset: 6px;
+  }
+
+  .stop {
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+  }
+
+  .pin {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+
+  .stop-marker::before {
+    top: 38px;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .item {
+    flex-wrap: wrap;
+    padding-left: 14px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .menu {
+    box-shadow: none;
+    border: none;
+  }
+
+  .stop,
+  .item {
+    animation: none !important;
+  }
+}
