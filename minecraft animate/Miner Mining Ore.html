@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miner Mining Ore</title>
+<style>
+  :root{
+    --skin:#e0ac69;
+    --shirt:#3a6ea5;
+    --pants:#2b3a55;
+    --hair:#3a2b1a;
+    --stone:#7a7a7a;
+    --stone-dark:#5e5e5e;
+    --ore:#5fb4e0;
+    --ore-dark:#3b8fc0;
+    --pick-wood:#8a5a2b;
+    --pick-head:#9a9a9a;
+    --bg-sky:#1c1c28;
+    --ground:#4a3524;
+  }
+
+  * { box-sizing: border-box; image-rendering: pixelated; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--bg-sky);
+    font-family: monospace;
+  }
+
+  .scene{
+    position:relative;
+    width:320px;
+    height:220px;
+    background: linear-gradient(#26263a 0%, #26263a 70%, var(--ground) 70%, var(--ground) 100%);
+    overflow:hidden;
+    border: 4px solid #111;
+  }
+
+  /* ---------- Ore block ---------- */
+  .ore-block{
+    position:absolute;
+    right:70px;
+    bottom:40px;
+    width:64px;
+    height:64px;
+    background: var(--stone);
+    box-shadow:
+      inset -6px -6px 0 var(--stone-dark),
+      inset 6px 6px 0 #949494;
+  }
+  .ore-block::before,
+  .ore-block::after,
+  .ore-block span{
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    background: var(--ore);
+    box-shadow: inset -3px -3px 0 var(--ore-dark);
+  }
+  .ore-block::before{ top:10px; left:12px; }
+  .ore-block::after{ bottom:14px; right:10px; }
+  .ore-block span{ top:28px; left:32px; }
+
+  .ore-block.hit{
+    animation: shake 0.18s ease-in-out;
+  }
+
+  @keyframes shake{
+    0%,100%{ transform: translateX(0); }
+    25%{ transform: translateX(-2px); }
+    75%{ transform: translateX(2px); }
+  }
+
+  /* spark particles on impact */
+  .spark{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:#fff2a8;
+    opacity:0;
+    right:104px;
+    bottom:70px;
+  }
+  .spark1{ animation: spark-fly 2s infinite; animation-delay: 0.55s; }
+  .spark2{ animation: spark-fly2 2s infinite; animation-delay: 0.55s; }
+  .spark3{ animation: spark-fly3 2s infinite; animation-delay: 1.55s; }
+  .spark4{ animation: spark-fly4 2s infinite; animation-delay: 1.55s; }
+
+  @keyframes spark-fly{
+    0%{ opacity:0; transform: translate(0,0); }
+    2%{ opacity:1; }
+    20%{ opacity:0; transform: translate(-14px,-10px); }
+    100%{ opacity:0; }
+  }
+  @keyframes spark-fly2{
+    0%{ opacity:0; transform: translate(0,0); }
+    2%{ opacity:1; }
+    20%{ opacity:0; transform: translate(10px,-14px); }
+    100%{ opacity:0; }
+  }
+  @keyframes spark-fly3{
+    0%{ opacity:0; transform: translate(0,0); }
+    2%{ opacity:1; }
+    20%{ opacity:0; transform: translate(-8px,-16px); }
+    100%{ opacity:0; }
+  }
+  @keyframes spark-fly4{
+    0%{ opacity:0; transform: translate(0,0); }
+    2%{ opacity:1; }
+    20%{ opacity:0; transform: translate(12px,-8px); }
+    100%{ opacity:0; }
+  }
+
+  /* ---------- Miner ---------- */
+  .miner{
+    position:absolute;
+    left:110px;
+    bottom:34px;
+    width:44px;
+    height:70px;
+  }
+
+  .head{
+    position:absolute;
+    top:0; left:10px;
+    width:24px;
+    height:20px;
+    background: var(--skin);
+    box-shadow: inset 0 8px 0 var(--hair);
+  }
+
+  .torso{
+    position:absolute;
+    top:20px; left:6px;
+    width:32px;
+    height:26px;
+    background: var(--shirt);
+    box-shadow: inset -6px 0 0 rgba(0,0,0,0.15);
+  }
+
+  .legs{
+    position:absolute;
+    top:46px; left:8px;
+    width:28px;
+    height:22px;
+    background: var(--pants);
+  }
+  .legs::before,
+  .legs::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    width:12px;
+    height:8px;
+    background:#1c2438;
+  }
+  .legs::before{ left:0; }
+  .legs::after{ right:0; }
+
+  /* arm + pickaxe pivot at the shoulder */
+  .arm-group{
+    position:absolute;
+    top:22px;
+    left:26px;
+    width:8px;
+    height:8px;
+    transform-origin: 4px 4px;
+    animation: swing 2s infinite;
+  }
+
+  .arm{
+    position:absolute;
+    top:0; left:0;
+    width:8px;
+    height:22px;
+    background: var(--skin);
+  }
+
+  .pickaxe{
+    position:absolute;
+    top:-26px;
+    left:-1px;
+    width:6px;
+    height:30px;
+    background: var(--pick-wood);
+    transform-origin: bottom center;
+  }
+  .pickaxe::before{
+    content:"";
+    position:absolute;
+    top:-4px;
+    left:-9px;
+    width:24px;
+    height:8px;
+    background: var(--pick-head);
+    clip-path: polygon(0% 50%, 40% 0%, 60% 0%, 100% 50%, 60% 100%, 40% 100%);
+  }
+
+  /* swing: raise up, strike down, pause, repeat -> ~2s loop reads as 2-3s of mining */
+  @keyframes swing{
+    0%   { transform: rotate(0deg); }
+    18%  { transform: rotate(-70deg); }   /* wind up */
+    32%  { transform: rotate(15deg); }    /* strike */
+    45%  { transform: rotate(15deg); }    /* hold on impact */
+    70%  { transform: rotate(0deg); }     /* return */
+    100% { transform: rotate(0deg); }     /* rest before next swing */
+  }
+</style>
+</head>
+<body>
+
+  <div class="scene">
+    <div class="ore-block" id="ore">
+      <span></span>
+    </div>
+
+    <div class="spark spark1"></div>
+    <div class="spark spark2"></div>
+    <div class="spark spark3"></div>
+    <div class="spark spark4"></div>
+
+    <div class="miner">
+      <div class="head"></div>
+      <div class="torso"></div>
+      <div class="legs"></div>
+      <div class="arm-group">
+        <div class="arm"></div>
+        <div class="pickaxe"></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // shake the ore block in sync with each strike (swing hits impact ~32% of the 2s loop)
+  const ore = document.getElementById('ore');
+  function pulse(){
+    ore.classList.remove('hit');
+    void ore.offsetWidth; // restart animation
+    ore.classList.add('hit');
+  }
+  pulse();
+  setInterval(pulse, 2000);
+</script>
+
+</body>
+</html>
