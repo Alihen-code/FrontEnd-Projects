@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revving Car Loading Animation</title>
+<style>
+  :root{
+    --bg:#0e0f13;
+    --road:#1c1d24;
+    --road-line:#4a4c58;
+    --body-color:#e8483c;
+    --body-dark:#b7362c;
+    --window:#bfe6f5;
+    --tire:#141414;
+    --rim:#c9c9c9;
+    --headlight:#ffe9a8;
+    --smoke:#8d8d8d;
+    --text:#e8e8ec;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--bg);
+    font-family: Arial, sans-serif;
+  }
+
+  .loader-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+  }
+
+  .scene{
+    position:relative;
+    width:260px;
+    height:150px;
+    overflow:hidden;
+  }
+
+  /* ---------- Road ---------- */
+  .road{
+    position:absolute;
+    left:0; right:0; bottom:20px;
+    height:26px;
+    background: var(--road);
+  }
+  .road-line{
+    position:absolute;
+    bottom:31px;
+    left:0;
+    width:200%;
+    height:3px;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--road-line) 0 24px,
+      transparent 24px 46px
+    );
+    animation: road-move 0.35s linear infinite;
+  }
+  @keyframes road-move{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-70px); }
+  }
+
+  /* ---------- Headlight glow on the road ---------- */
+  .glow{
+    position:absolute;
+    bottom:16px;
+    left:150px;
+    width:80px;
+    height:34px;
+    background: radial-gradient(ellipse at left, rgba(255,233,168,0.5), transparent 70%);
+    animation: rev-shake 0.55s ease-in-out infinite;
+  }
+
+  /* ---------- Exhaust smoke ---------- */
+  .smoke{
+    position:absolute;
+    bottom:26px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background: var(--smoke);
+    opacity:0;
+  }
+  .smoke1{ left:34px; animation: puff 1.1s ease-out infinite; }
+  .smoke2{ left:30px; animation: puff 1.1s ease-out infinite 0.37s; }
+  .smoke3{ left:38px; animation: puff 1.1s ease-out infinite 0.74s; }
+
+  @keyframes puff{
+    0%{
+      opacity:0;
+      transform: translate(0,0) scale(0.5);
+    }
+    15%{
+      opacity:0.55;
+    }
+    100%{
+      opacity:0;
+      transform: translate(-30px,-16px) scale(1.6);
+    }
+  }
+
+  /* ---------- Car ---------- */
+  .car{
+    position:absolute;
+    bottom:24px;
+    left:70px;
+    width:150px;
+    height:52px;
+    animation: rev-shake 0.55s ease-in-out infinite;
+  }
+
+  .car-body{
+    position:absolute;
+    bottom:14px;
+    left:0;
+    width:150px;
+    height:26px;
+    background: var(--body-color);
+    border-radius: 8px 14px 6px 4px;
+    box-shadow: inset 0 -6px 0 var(--body-dark);
+  }
+
+  .car-cabin{
+    position:absolute;
+    bottom:32px;
+    left:40px;
+    width:70px;
+    height:22px;
+    background: var(--body-color);
+    border-radius: 16px 20px 0 0;
+    box-shadow: inset 0 -4px 0 var(--body-dark);
+  }
+
+  .window{
+    position:absolute;
+    bottom:38px;
+    left:48px;
+    width:54px;
+    height:12px;
+    background: var(--window);
+    border-radius: 8px 12px 0 0;
+  }
+  .window::after{
+    content:"";
+    position:absolute;
+    top:0; bottom:0;
+    left:26px;
+    width:3px;
+    background: var(--body-color);
+  }
+
+  .headlamp{
+    position:absolute;
+    bottom:18px;
+    right:-3px;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background: var(--headlight);
+    box-shadow: 0 0 8px 2px rgba(255,233,168,0.8);
+  }
+
+  .wheel{
+    position:absolute;
+    bottom:-4px;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background: var(--tire);
+    box-shadow: inset 0 0 0 5px var(--rim);
+    animation: spin 0.15s linear infinite;
+  }
+  .wheel::before{
+    content:"";
+    position:absolute;
+    top:50%; left:50%;
+    width:2px;
+    height:10px;
+    background: var(--tire);
+    transform: translate(-50%,-50%);
+  }
+  .wheel::after{
+    content:"";
+    position:absolute;
+    top:50%; left:50%;
+    width:10px;
+    height:2px;
+    background: var(--tire);
+    transform: translate(-50%,-50%);
+  }
+  .wheel-front{ right:18px; }
+  .wheel-back{ left:16px; }
+
+  @keyframes spin{
+    to{ transform: rotate(360deg); }
+  }
+
+  @keyframes rev-shake{
+    0%, 100%{ transform: translateX(0) translateY(0); }
+    25%{ transform: translateX(-1px) translateY(0.5px); }
+    50%{ transform: translateX(1px) translateY(-0.5px); }
+    75%{ transform: translateX(-0.5px) translateY(0.5px); }
+  }
+
+  .loading-text{
+    color: var(--text);
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .loading-text::after{
+    content:"";
+    display:inline-block;
+    width:1em;
+    text-align:left;
+    animation: dots 1.2s steps(4,end) infinite;
+  }
+
+  @keyframes dots{
+    0%   { content:""; }
+    25%  { content:"."; }
+    50%  { content:".."; }
+    75%  { content:"..."; }
+    100% { content:""; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="loader-wrap">
+    <div class="scene">
+      <div class="road"></div>
+      <div class="road-line"></div>
+
+      <div class="glow"></div>
+
+      <div class="smoke smoke1"></div>
+      <div class="smoke smoke2"></div>
+      <div class="smoke smoke3"></div>
+
+      <div class="car">
+        <div class="car-body"></div>
+        <div class="car-cabin"></div>
+        <div class="window"></div>
+        <div class="headlamp"></div>
+        <div class="wheel wheel-front"></div>
+        <div class="wheel wheel-back"></div>
+      </div>
+    </div>
+
+    <div class="loading-text">Revving up</div>
+  </div>
+
+</body>
+</html>
