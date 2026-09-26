@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Cup Loading Animation</title>
+<style>
+  :root{
+    --bg:#2b1f1a;
+    --cup:#ffffff;
+    --cup-shadow:#d8cfc7;
+    --coffee:#5b3a29;
+    --coffee-light:#7a4f38;
+    --steam:#c9c9c9;
+    --text:#f0e4da;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: var(--bg);
+    font-family: Arial, sans-serif;
+  }
+
+  .loader-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+  }
+
+  .cup-scene{
+    position:relative;
+    width:140px;
+    height:150px;
+  }
+
+  /* ---------- Steam ---------- */
+  .steam{
+    position:absolute;
+    bottom:78px;
+    width:10px;
+    height:34px;
+    border-radius:50%;
+    background: var(--steam);
+    opacity:0;
+    filter: blur(1px);
+  }
+
+  .steam1{ left:38px; animation: rise 2.2s ease-in infinite; }
+  .steam2{ left:64px; animation: rise 2.2s ease-in infinite 0.5s; }
+  .steam3{ left:90px; animation: rise 2.2s ease-in infinite 1s; }
+
+  @keyframes rise{
+    0%{
+      opacity:0;
+      transform: translateY(0) scaleX(1);
+    }
+    15%{
+      opacity:0.65;
+    }
+    50%{
+      transform: translateY(-30px) scaleX(1.4) rotate(4deg);
+      opacity:0.4;
+    }
+    100%{
+      transform: translateY(-60px) scaleX(1.8) rotate(-4deg);
+      opacity:0;
+    }
+  }
+
+  /* ---------- Cup ---------- */
+  .cup{
+    position:absolute;
+    bottom:0;
+    left:14px;
+    width:100px;
+    height:78px;
+    background: var(--cup);
+    border-radius: 0 0 44px 44px;
+    box-shadow: inset 0 -10px 0 var(--cup-shadow);
+    overflow:hidden;
+  }
+
+  .coffee-fill{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height:0%;
+    background: linear-gradient(var(--coffee-light), var(--coffee));
+    animation: fill 2.2s ease-in-out infinite;
+  }
+
+  @keyframes fill{
+    0%   { height: 15%; }
+    50%  { height: 65%; }
+    100% { height: 15%; }
+  }
+
+  .handle{
+    position:absolute;
+    bottom:16px;
+    right:-22px;
+    width:26px;
+    height:34px;
+    border: 8px solid var(--cup);
+    border-left: none;
+    border-radius: 0 20px 20px 0;
+    box-shadow: inset -3px 0 0 var(--cup-shadow);
+  }
+
+  .saucer{
+    position:absolute;
+    bottom:-10px;
+    left:-6px;
+    width:128px;
+    height:14px;
+    background: var(--cup);
+    border-radius: 50%;
+    box-shadow: 0 3px 0 var(--cup-shadow);
+  }
+
+  .loading-text{
+    color: var(--text);
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .loading-text::after{
+    content:"";
+    display:inline-block;
+    width:1em;
+    text-align:left;
+    animation: dots 1.4s steps(4,end) infinite;
+  }
+
+  @keyframes dots{
+    0%   { content:""; }
+    25%  { content:"."; }
+    50%  { content:".."; }
+    75%  { content:"..."; }
+    100% { content:""; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="loader-wrap">
+    <div class="cup-scene">
+      <div class="steam steam1"></div>
+      <div class="steam steam2"></div>
+      <div class="steam steam3"></div>
+
+      <div class="cup">
+        <div class="coffee-fill"></div>
+      </div>
+      <div class="handle"></div>
+      <div class="saucer"></div>
+    </div>
+
+    <div class="loading-text">Brewing</div>
+  </div>
+
+</body>
+</html>
